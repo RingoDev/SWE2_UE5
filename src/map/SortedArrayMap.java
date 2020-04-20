@@ -1,26 +1,22 @@
 package map;
-
 import java.lang.Comparable;
 
 public class SortedArrayMap<K extends Comparable<? super K>, V> extends ArrayMap<K, V> implements SortedMap<K, V> {
 
     @Override
     public void put(K key, V value) {
-        Entry<K, V> newEntry = new SimpleEntry<K, V>(key, value);
+        Entry<K, V> newEntry = new SimpleEntry<>(key, value);
         //checking if Key already exists
         if (contains(key)) {//Key exists
             super.entries[indexOf(key)] = newEntry;
         } else {//Key doesnt exist
-
             if (entries.length == super.nEntries) {//not enough space...array is full
                 increaseSize();
                 sortedInsert(newEntry);
             } else {
                 sortedInsert(newEntry);
             }
-
         }
-
     }
 
     protected int indexOf(K key) {
@@ -37,7 +33,8 @@ public class SortedArrayMap<K extends Comparable<? super K>, V> extends ArrayMap
         for (int i = 0; i < super.entries.length; i++) {//find next space
             if (super.entries[i] != null) {
                 if (entry.getKey().compareTo(super.entries[i].getKey()) < 1) {//if -1 or 0 insert
-                    System.arraycopy(super.entries, i, super.entries, i + 1, super.entries.length - (i + 1));//copying all entries 1 position further back
+                    //copying all entries 1 position further back
+                    System.arraycopy(super.entries, i, super.entries, i + 1, super.entries.length - (i + 1));
                     super.entries[i] = entry;//inserting entry on freed position
                     super.nEntries++;
                     break;
@@ -48,7 +45,6 @@ public class SortedArrayMap<K extends Comparable<? super K>, V> extends ArrayMap
                 break;
             }
         }
-
     }
 
     private void increaseSize() {
@@ -57,5 +53,4 @@ public class SortedArrayMap<K extends Comparable<? super K>, V> extends ArrayMap
         System.arraycopy(this.entries, 0, temp, 0, this.entries.length);
         this.entries = temp;
     }
-
 }

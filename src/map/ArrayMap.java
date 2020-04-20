@@ -1,6 +1,8 @@
 package map;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.*;
 import java.util.Iterator;
 
@@ -20,7 +22,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 
     @Override
     public void put(K key, V value) {
-        Entry<K, V> newEntry = new SimpleEntry<K, V>(key, value);
+        Entry<K, V> newEntry = new SimpleEntry<>(key, value);
         //checking if Key already exists
         if (contains(key)) {//Key exists
             this.entries[indexOf(key)] = newEntry;
@@ -83,7 +85,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 
     @Override
     public Iterator<K> keyIterator() {
-        return new Iterator<K>() {
+        return new Iterator<>() {
             int position = 0;
 
             @Override
@@ -102,7 +104,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 
     @Override
     public Iterator<V> valueIterator() {
-        return new Iterator<V>() {
+        return new Iterator<>() {
             int position = 0;
 
             @Override
@@ -120,8 +122,9 @@ public class ArrayMap<K, V> implements Map<K, V> {
     }
 
     @Override
+    @NotNull
     public Iterator<Entry<K, V>> iterator() {
-        return new Iterator<Entry<K, V>>() {
+        return new Iterator<>() {
             int position = 0;
 
             @Override
@@ -140,8 +143,8 @@ public class ArrayMap<K, V> implements Map<K, V> {
 
 
     protected static class SimpleEntry<K, V> implements Map.Entry<K, V> {
-        K key;
-        V value;
+        private final K key;
+        private final V value;
 
         protected SimpleEntry(K key, V value) {
             this.key = key;
