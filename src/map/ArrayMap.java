@@ -1,8 +1,6 @@
 package map;
 
 
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.*;
 import java.util.Iterator;
 
@@ -122,7 +120,6 @@ public class ArrayMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    @NotNull
     public Iterator<Entry<K, V>> iterator() {
         return new Iterator<>() {
             int position = 0;

@@ -12,10 +12,8 @@ public class SortedArrayMap<K extends Comparable<? super K>, V> extends ArrayMap
         } else {//Key doesnt exist
             if (entries.length == super.nEntries) {//not enough space...array is full
                 increaseSize();
-                sortedInsert(newEntry);
-            } else {
-                sortedInsert(newEntry);
             }
+            sortedInsert(newEntry);
         }
     }
 
